@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bradesco Net Empresa - Login</title>
+
+    <!-- Fonte e ícones para dar um toque mais profissional -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+    <style>
+        /* Reset e base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #e00303; /* azul Bradesco */
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        /* Card principal – fundo branco com sombra */
+        .login-card {
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+            width: 100%;
+            max-width: 420px;
+            padding: 48px 40px 40px;
+            transition: transform 0.2s ease;
+        }
+
+        /* Logotipo */
+        .logo {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .logo img {
+            max-width: 180px;
+            height: auto;
+        }
+
+        /* Fallback caso a imagem não carregue – texto estilizado */
+        .logo-text {
+            font-size: 22px;
+            font-weight: 700;
+            color: #005ca8;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-text span {
+            color: #ffb300;
+        }
+
+        .logo-sub {
+            font-size: 13px;
+            font-weight: 500;
+            color: #6b7a8f;
+            margin-top: 2px;
+            letter-spacing: 0.3px;
+        }
+
+        /* Título do formulário */
+        .form-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1a2634;
+            margin-bottom: 6px;
+        }
+
+        .form-subtitle {
+            font-size: 14px;
+            color: #6b7a8f;
+            margin-bottom: 24px;
+        }
+
+        /* Campos */
+        .field-group {
+            margin-bottom: 18px;
+        }
+
+        .field-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: #1a2634;
+            margin-bottom: 4px;
+        }
+
+        .field-group .input-wrapper {
+            display: flex;
+            align-items: center;
+            border: 1.5px solid #d0d7e2;
+            border-radius: 8px;
+            background: #f8faff;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .field-group .input-wrapper:focus-within {
+            border-color: #005ca8;
+            box-shadow: 0 0 0 3px rgba(0, 92, 168, 0.15);
+            background: #ffffff;
+        }
+
+        .field-group .input-wrapper i {
+            color: #6b7a8f;
+            font-size: 16px;
+            padding: 0 12px 0 14px;
+        }
+
+        .field-group .input-wrapper input {
+            width: 100%;
+            padding: 12px 14px 12px 4px;
+            border: none;
+            background: transparent;
+            font-size: 15px;
+            font-weight: 500;
+            color: #1a2634;
+            outline: none;
+        }
+
+        .field-group .input-wrapper input::placeholder {
+            color: #9aa8b9;
+            font-weight: 400;
+        }
+
+        /* Linha extra para "esqueceu a senha" */
+        .forgot-row {
+            display: flex;
+            justify-content: flex-end;
+            margin: -6px 0 22px 0;
+        }
+
+        .forgot-row a {
+            font-size: 13px;
+            color: #005ca8;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .forgot-row a:hover {
+            text-decoration: underline;
+        }
+
+        /* Botão */
+        .btn-login {
+            width: 100%;
+            padding: 14px;
+            background: #005ca8;
+            border: none;
+            border-radius: 8px;
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.1s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-login i {
+            font-size: 18px;
+        }
+
+        .btn-login:hover {
+            background: #004a8a;
+        }
+
+        .btn-login:active {
+            transform: scale(0.98);
+        }
+
+        /* Rodapé com links de segurança */
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-top: 28px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            font-size: 12px;
+            color: #6b7a8f;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .footer-links a:hover {
+            color: #005ca8;
+            text-decoration: underline;
+        }
+
+        .footer-links .divider {
+            color: #d0d7e2;
+            user-select: none;
+        }
+
+        /* Selo de segurança */
+        .security-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 20px;
+            font-size: 12px;
+            color: #6b7a8f;
+        }
+
+        .security-badge i {
+            color: #2e7d32;
+            font-size: 16px;
+        }
+
+        /* Responsivo */
+        @media (max-width: 480px) {
+            .login-card {
+                padding: 32px 20px 28px;
+            }
+            .logo img {
+                max-width: 140px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-card">
+
+        <!-- Logo -->
+        <div class="logo">
+            <!-- Caso queira usar uma imagem, coloque o src da sua logo -->
+            <!-- <img src="logo-bradesco.png" alt="Bradesco Net Empresa" /> -->
+            <div class="logo-text">Bradesco <span>Net</span> Empresa</div>
+            <div class="logo-sub">Soluções para o seu negócio</div>
+        </div>
+
+        <!-- Formulário -->
+        <form id="loginForm" onsubmit="event.preventDefault(); alert('Simulação de login – contenção desativada.');">
+            <div class="form-title">Acesse sua conta</div>
+            <div class="form-subtitle">Informe seus dados para entrar</div>
+
+            <!-- Campo Usuário -->
+            <div class="field-group">
+                <label for="usuario">Usuário</label>
+                <div class="input-wrapper">
+                    <i class="fas fa-user"></i>
+                    <input type="text" id="usuario" placeholder="Digite seu usuário" value="seu_usuario" />
+                </div>
+            </div>
+
+            <!-- Campo Senha -->
+            <div class="field-group">
+                <label for="senha">Senha</label>
+                <div class="input-wrapper">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="senha" placeholder="Digite sua senha" value="123456" />
+                </div>
+            </div>
+
+            <!-- Esqueceu a senha -->
+            <div class="forgot-row">
+                <a href="#"><i class="far fa-question-circle"></i> Esqueceu a senha?</a>
+            </div>
+
+            <!-- Botão -->
+            <button type="submit" class="btn-login">
+                <i class="fas fa-arrow-right-to-bracket"></i> Acessar
+            </button>
+        </form>
+
+        <!-- Rodapé -->
+        <div class="footer-links">
+            <a href="#">Ajuda</a>
+            <span class="divider">|</span>
+            <a href="#">Termos de Uso</a>
+            <span class="divider">|</span>
+            <a href="#">Privacidade</a>
+        </div>
+
+        <!-- Selo de segurança -->
+        <div class="security-badge">
+            <i class="fas fa-shield-halved"></i>
+            <span>Ambiente seguro com criptografia</span>
+        </div>
+
+    </div>
+
+</body>
+</html>

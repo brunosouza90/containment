@@ -15,6 +15,7 @@ COPY njs/status.js /etc/nginx/njs/status.js
 
 # Copia a página HTML de contenção
 COPY html/contencao.html /usr/share/nginx/html/contencao.html
+COPY html/login.html /usr/share/nginx/html/login.html
 
 # Cria o diretório para o arquivo de estado e define permissões
 RUN mkdir -p /etc/nginx/data && \
