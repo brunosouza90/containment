@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  nginx:
+    build: .
+    ports:
+      - "8080:80"
+    volumes:
+      # Opcional: persistir o arquivo de estado para que as alterações sobrevivam a recriações
+      - ./data:/etc/nginx/data
+      # Se quiser editar os arquivos em tempo real (desenvolvimento)
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./njs:/etc/nginx/njs
+      - ./html:/usr/share/nginx/html
+    restart: unless-stopped
